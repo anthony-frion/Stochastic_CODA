@@ -1,0 +1,44 @@
+name: coda_env
+
+channels:
+  - conda-forge
+  - pytorch
+  - nvidia
+
+dependencies:
+  - python=3.9
+  - pip
+  - pytorch-cuda=11.7
+  - pytorch>=2
+  - pre-commit
+  - black
+  - isort
+  - flake8
+  - tensorboard
+  - torchvision>=0.14
+  - pytorch-lightning>=2
+  - torchdiffeq
+  - hydra-core=1.3
+  - matplotlib
+  - ipython
+  - jupyterlab
+  - scikit-learn
+  - rich
+  - pandas
+  - gitpython
+  - numpy
+  - seaborn
+  - numpy
+  - scipy
+  - pandas
+  - tqdm
+  - pylint
+  - setuptools_scm
+  - h5py
+  - pip:
+      - torch-tb-profiler
+      - hydra-colorlog
+      - hydra-submitit-launcher
+      - submitit
+      - h5py
+      - git+https://codebase.helmholtz.cloud/m-dml/mdml-tools.git

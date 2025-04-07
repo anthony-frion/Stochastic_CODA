@@ -1,0 +1,6 @@
+python main.py +experiment=data_assimilation output_dir_base_path="." datamodule.path_to_load_data="U:/Stochastic_CODA/code/data/L96.h5" +observation_model.additional_noise_std=1.0 +observation_model.random_mask_fraction=0.75 rollout_length=25 input_window_extend=25 loss_alpha=0.5 random_seed=111
+
+python main.py +experiment=data_assimilation output_dir_base_path="." datamodule.path_to_load_data="data/L96_small.h5" +observation_model.additional_noise_std=1.0 +observation_model.random_mask_fraction=0.75 rollout_length=25 input_window_extend=25 loss_alpha=0.5 random_seed=111
+
+python main.py +experiment=data_assimilation output_dir_base_path="." datamodule.path_to_load_data="C:\Users\Frion\Desktop\Stochastic_CODA\code\data\L96_small.h5" +observation_model.additional_noise_std=1.0 +observation_model.random_mask_fraction=0.75 rollout_length=25 input_window_extend=25 loss_alpha=0.5 random_seed=111
+
