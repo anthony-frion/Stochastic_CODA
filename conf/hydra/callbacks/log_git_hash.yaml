@@ -1,0 +1,5 @@
+# @package _global_
+hydra:
+  callbacks:
+    log_git_hash:
+      _target_: "mdml_tools.utils.hydra_callbacks.LogGitHash"

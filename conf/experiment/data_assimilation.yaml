@@ -1,0 +1,95 @@
+# @package _global_
+defaults:
+  - override /simulator: l96_simulator_base
+  - override /assimilation_network: unet
+  - override /loss: 4dvar
+  - override /datamodule: l96_dataset_one_level
+  - override /lightning_module: data_assimilation_module
+  - override /optimizer@optimizer.data_assimilation: adam_base
+  - override /lightning_trainer: trainer_base
+  - override /lightning_callback/model_checkpoint: model_checkpoint_base
+  - override /lightning_callback/early_stopping: early_stopping_base
+
+  - _self_ # should be last in defaults list to override everything in structured config with here defined values
+
+output_dir_base_path: "/gpfs/work/zinchenk/hpl_logs"
+print_config: false
+training: true
+debug: false
+random_seed: 111
+
+assimilation_network_checkpoint: null
+time_step: 0.01
+rollout_length: 25
+input_window_extend: 25
+batch_size: 16
+l96_forcing: 8
+loss_alpha: 1.0
+
+assimilation_network:
+  output_convolution_sigma:
+    out_channels: 0
+
+datamodule:
+  path_to_save_data: null
+  train_validation_split: 0.75
+  shuffle_train: true
+  shuffle_valid: false
+  batch_size: ${batch_size}
+  drop_last_batch: true
+  pin_memory: false
+  dataset:
+    rollout_length: ${rollout_length}
+    input_window_extend: ${input_window_extend}
+
+loss:
+  alpha: ${loss_alpha}
+
+simulator:
+  simulator_type: "one_level"
+  forcing: ${l96_forcing}
+  method: "rk4"
+
+lightning_module:
+  rollout_length: ${rollout_length}
+  time_step: ${time_step}
+
+lightning_trainer:
+  max_epochs: 100
+  log_every_n_steps: 50
+  val_check_interval: 0.5
+  detect_anomaly: false
+  fast_dev_run: false
+  deterministic: false
+  devices: 1
+
+lightning_logger:
+  tensor_board_logger:
+    default_hp_metric: false
+    save_dir: "./logs"
+
+lightning_callback:
+  early_stopping:
+    min_delta: 0.0
+    mode: "min"
+    monitor: "TotalLoss/Validation"
+    patience: 10
+    verbose: true
+  model_checkpoint:
+    dirpath: "./logs/checkpoints/"
+    filename: "{epoch:02d}"
+    mode: "min"
+    monitor: "TotalLoss/Validation"
+    save_last: true
+    save_top_k: 1
+    verbose: false
+    save_on_train_epoch_end: True
+
+hydra:
+  job:
+    chdir: true
+  sweep:
+    dir: ${output_dir_base_path}/data_assimilation/multirun/${now:%Y-%m-%d}/${now:%H-%M-%S}
+    subdir: ${hydra.job.num}
+  run:
+    dir: ${output_dir_base_path}/data_assimilation/outputs/${now:%Y-%m-%d}/${now:%H-%M-%S}

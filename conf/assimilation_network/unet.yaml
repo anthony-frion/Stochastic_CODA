@@ -1,0 +1,79 @@
+defaults:
+  - unet_base
+  - encoder: conv_encoder_base
+  - encoder/block: conv_block_encoding_base
+  - /convolution@encoder.block.convolution: conv2d_base
+  - /pooling@encoder.block.pooling: max_pool2d_base
+  - /batch_norm@encoder.block.batch_norm: batch_norm2d_base
+  - /dropout@encoder.block.dropout: null
+  - /activation@encoder.block.activation: re_lu_base
+  - decoder: conv_decoder_base
+  - decoder/block: conv_block_decoding_base
+  - /convolution@decoder.block.convolution: conv1d_base
+  - /convolution@decoder.block.upscale: conv_transpose1d_base
+  - /batch_norm@decoder.block.batch_norm: batch_norm1d_base
+  - /dropout@decoder.block.dropout: null
+  - /activation@decoder.block.activation: re_lu_base
+  - global_pool: global_max_pool_base
+  - /convolution@output_convolution: conv1d_base
+  - /convolution@output_convolution_sigma: conv1d_base
+  #- sigma_final_nonlin: softplus
+
+  - _self_
+
+encoder:
+  levels:
+    - [4, 32, 32]
+    - [32, 64, 64]
+    - [64, 128, 128]
+  block:
+    convolution:
+      kernel_size: 3
+      stride: 1
+      padding: 1
+      padding_mode: "circular"
+    pooling:
+      kernel_size: 2
+      stride: 2
+      padding: 0
+
+decoder:
+  levels:
+    - [128, 128, 64]
+    - [128, 64, 32]
+    - [64, 32, 32]
+  block:
+    convolution:
+      kernel_size: 3
+      stride: 1
+      padding: 1
+      padding_mode: "circular"
+    upscale:
+      kernel_size: 2
+      stride: 2
+      padding: 0
+
+output_convolution:
+  in_channels: 32
+  out_channels: 1
+  kernel_size: 3
+  stride: 1
+  padding: 1
+  padding_mode: "circular"
+
+output_convolution_sigma:
+  in_channels: 32
+  #out_channels: 1
+  out_channels: 3
+  kernel_size: 3
+  stride: 1
+  padding: 1
+  padding_mode: "circular"
+  
+#sigma_final_nonlin:
+  #nonlin: "softplus"
+
+global_pool:
+  dim: -2
+
+dropout: 0

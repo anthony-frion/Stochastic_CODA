@@ -1,0 +1,36 @@
+defaults:
+  - base_config
+  - /hydra/callbacks:
+      - log_git_hash
+  - simulator: l96_simulator_base
+  - /simulator/parametrization: null
+  - assimilation_network: unet
+  - datamodule: l96_dataset_one_level
+  - loss: 4dvar
+  - lightning_module: data_assimilation_module
+  - /optimizer@optimizer.data_assimilation: adam_base
+  - /optimizer@optimizer.parametrization: null
+  - lightning_trainer: trainer_base
+  - lightning_logger/tensor_board_logger: tensor_board_logger_base
+  - lightning_callback/model_checkpoint: model_checkpoint_base
+  - lightning_callback/early_stopping: early_stopping_base
+
+  - override hydra/launcher: local
+  - override hydra/hydra_logging: colorlog
+  - override hydra/job_logging: colorlog
+
+  - _self_ # should be last in defaults list to override everything in structured config with here defined values
+
+output_dir_base_path: "."
+print_config: true
+training: true
+debug: false
+
+hydra:
+  job:
+    chdir: true
+  sweep:
+    dir: ${output_dir_base_path}/multirun/${now:%Y-%m-%d}/${now:%H-%M-%S}
+    subdir: ${hydra.job.num}
+  run:
+    dir: ${output_dir_base_path}/outputs/${now:%Y-%m-%d}/${now:%H-%M-%S}

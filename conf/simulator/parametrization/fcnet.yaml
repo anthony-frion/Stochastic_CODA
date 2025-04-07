@@ -1,0 +1,12 @@
+defaults:
+  - fully_convolutional_network_base
+  - /activation@activation: re_lu_base
+  - /convolution@convolution: conv1d_base
+  - _self_
+
+convolution:
+  kernel_size: 1
+  stride: 1
+  padding: 0
+
+layers: [1, 32, 32, 1]
