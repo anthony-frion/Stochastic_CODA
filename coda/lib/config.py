@@ -51,9 +51,7 @@ def register_configs() -> None:
 
     # assimilation network
     cs.store("unet_base", node=Unet, group="assimilation_network")
-    print('pouet')
     cs.store("unet_gaussian", node=Unet_gaussian, group="assimilation_network")
-    print("pouet pouet")
     cs.store("conv_encoder_base", node=ConvolutionalEncoder, group="assimilation_network/encoder")
     cs.store("conv_block_encoding_base", node=ConvolutionalEncodingBlock, group="assimilation_network/encoder/block")
     cs.store("conv_decoder_base", node=ConvolutionalDecoder, group="assimilation_network/decoder")
@@ -89,7 +87,6 @@ def register_configs() -> None:
 
     # register the base config class (this name has to be called in config.yaml):
     cs.store(name="base_config", node=Config)
-    print("pouet pouet pouet")
 
 
 @dataclass
