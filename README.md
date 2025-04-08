@@ -21,9 +21,9 @@ python main.py +experiment=data_assimilation output_dir_base_path="." datamodule
 
 A model parameterizing a diagonal Gaussian distribution conditioned on a window of observations can be trained with:
 ```bash
-python main.py +experiment=data_assimilation_gaussian output_dir_base_path="." datamodule.path_to_load_data="/content/drive/MyDrive/Postdoc/Stochastic_CODA/code/data/L96_small.h5" rollout_length=20 input_window_extend=25 loss_alpha=0.4 random_seed=111 assimilation_network=unet lightning_module.sample_mean=true
+python main.py +experiment=data_assimilation_gaussian output_dir_base_path="." datamodule.path_to_load_data="/content/drive/MyDrive/Postdoc/Stochastic_CODA/code/data/L96_small.h5" rollout_length=20 input_window_extend=25 loss_alpha=0.4 random_seed=111
 ```
 One can also do the same for the parameterization of a Gaussian distribution with a diagonal plus low-rank covariance matrix, with:
 ```bash
-python main.py +experiment=data_assimilation_gaussian_LR output_dir_base_path="." datamodule.path_to_load_data="/content/drive/MyDrive/Postdoc/Stochastic_CODA/code/data/L96_small.h5" rollout_length=20 input_window_extend=25 loss_alpha=0.4 random_seed=111 assimilation_network=unet
+python main.py +experiment=data_assimilation_gaussian_LR output_dir_base_path="." datamodule.path_to_load_data="/content/drive/MyDrive/Postdoc/Stochastic_CODA/code/data/L96_small.h5" rollout_length=20 input_window_extend=25 loss_alpha=0.4 random_seed=111
 ```
