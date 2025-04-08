@@ -1,7 +1,6 @@
 # @package _global_
 defaults:
   - override /simulator: l96_simulator_base
-  - override /assimilation_network: unet_gaussian
   - override /loss: NLL_full
   - override /datamodule: l96_dataset_one_level
   - override /lightning_module: data_assimilation_gaussian_LR_module
