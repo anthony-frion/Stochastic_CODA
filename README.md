@@ -6,8 +6,6 @@ Zinchenko, Vadim, and David S. Greenberg. "Combined Optimization of Dynamics and
 
 The code is based on the one from this original work, which is available here: https://codebase.helmholtz.cloud/m-dml/hidden-process-learning
 
-Some preliminary ideas and formalisations for this new project can be found here: https://www.overleaf.com/read/bthkqjvpybmd#fa002b
-
 **Usage:** 
 
 One can generate a Lorenz-96 dataset using the [mdml-tools](https://codebase.helmholtz.cloud/m-dml/mdml-tools/-/blob/main/mdml_tools/scripts/generate_lorenz_data.py) repository, or directly download pre-generated data from [here](https://drive.google.com/drive/folders/10f9RGCrtRD97OaQTyPr-jMm2k-o6i5PA?usp=sharing).
