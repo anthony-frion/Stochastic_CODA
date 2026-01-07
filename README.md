@@ -6,7 +6,7 @@ Zinchenko, Vadim, and David S. Greenberg. "Combined Optimization of Dynamics and
 
 **Usage:** 
 
-One can generate a Lorenz-96 dataset using the [mdml-tools](https://codebase.helmholtz.cloud/m-dml/mdml-tools/-/blob/main/mdml_tools/scripts/generate_lorenz_data.py) repository, or directly download pre-generated data from [here](https://drive.google.com/drive/folders/10f9RGCrtRD97OaQTyPr-jMm2k-o6i5PA?usp=sharing).
+One can generate a Lorenz-96 dataset using the [mdml-tools](https://codebase.helmholtz.cloud/m-dml/mdml-tools/-/blob/main/mdml_tools/scripts/generate_lorenz_data.py) repository, or directly download pre-generated data from [here]([https://drive.google.com/drive/folders/10f9RGCrtRD97OaQTyPr-jMm2k-o6i5PA?usp=sharing](https://drive.google.com/drive/folders/1TtajmBWNDLs58cw34F7Q8mrEd-TgMTwT?usp=sharing)).
 
 Afterwards, stochastic models can be trained by running the "main.py" script with the appropriate arguments.
 
