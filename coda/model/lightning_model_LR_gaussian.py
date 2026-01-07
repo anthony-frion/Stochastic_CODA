@@ -66,7 +66,6 @@ class LightningBaseModel(pl.LightningModule):
         mu_left, Sigma_diag_left, Sigma_factor_left = self.assimilation_network.forward(feed_forward_left)
         mu_right, Sigma_diag_right, Sigma_factor_right = self.assimilation_network.forward(feed_forward_right)
         if self.sample_mean:
-            #print("WTFFFFFFFF")
             estimated_state_left = mu_left
             estimated_state_right = mu_right
         else:
