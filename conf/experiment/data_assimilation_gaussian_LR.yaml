@@ -37,6 +37,10 @@ datamodule:
     rollout_length: ${rollout_length}
     input_window_extend: ${input_window_extend}
 
+assimilation_network:
+  output_convolution_sigma:
+    out_channels: 3 # rank 3 covariance matrix
+
 loss:
   alpha: ${loss_alpha}
 
